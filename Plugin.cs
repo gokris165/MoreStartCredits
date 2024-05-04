@@ -1,12 +1,8 @@
 ﻿using BepInEx;
+using BepInEx.Configuration;
 using BepInEx.Logging;
+
 using HarmonyLib;
-using MoreStartCredits.Patches;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoreStartCredits
 {
@@ -18,8 +14,12 @@ namespace MoreStartCredits
         private const string modVersion = "1.0.0.0";
 
         private readonly Harmony harmony = new Harmony(modGUID);
-        private static Plugin Instance;
-        internal ManualLogSource logger;
+
+        public static Plugin Instance;
+        
+        internal static ManualLogSource logger;
+
+        internal static ConfigEntry<int> startingCredits;
 
         void Awake()
         {
@@ -29,6 +29,8 @@ namespace MoreStartCredits
             }
             logger = BepInEx.Logging.Logger.CreateLogSource(modGUID);
             logger.LogWarning(modName + " has started!");
+
+            startingCredits = Config.Bind("General", "startingCredits", 150, "Amount of credits available on a new save file");
 
             harmony.PatchAll();
         }
