@@ -20,7 +20,8 @@ namespace MoreStartCredits.Patches
             }
             catch(Exception e)
             { 
-                Plugin.logger.LogInfo("FAILED: Brocool.MoreStartCredits");
+                Plugin.logger.LogError("FAILED: error while changing starting credits");
+                Plugin.logger.LogError(e.Message);
             }
             Plugin.logger.LogInfo("SUCCESS: starting credits set to " + Plugin.startingCredits.Value);
         }

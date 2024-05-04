@@ -28,7 +28,7 @@ namespace MoreStartCredits
                 Instance = this;
             }
             logger = BepInEx.Logging.Logger.CreateLogSource(modGUID);
-            logger.LogWarning(modName + " has started!");
+            logger.LogInfo(modName + " has started!");
 
             startingCredits = Config.Bind("General", "startingCredits", 150, "Amount of credits available on a new save file");
 
